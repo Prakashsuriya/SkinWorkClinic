@@ -182,7 +182,7 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  className="w-full bg-rose-500 hover:bg-rose-600 text-white py-3 rounded-lg font-semibold transition-all hover:shadow-lg flex items-center justify-center gap-2"
+                  className="w-full bg-rose-500 text-white py-3 rounded-lg font-semibold transition-all flex items-center justify-center gap-2"
                 >
                   Send Message <Send size={18} />
                 </button>
