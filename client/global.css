@@ -1,0 +1,152 @@
+/** @import must precede all other statements */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme - Light Pastel Skincare Palette
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    --background: 25 30% 95%;
+    --foreground: 145 15% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 145 15% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 145 15% 20%;
+
+    /* Sage green primary for skincare brand */
+    --primary: 145 25% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Cream secondary */
+    --secondary: 25 50% 90%;
+    --secondary-foreground: 145 15% 20%;
+
+    --muted: 145 15% 85%;
+    --muted-foreground: 145 10% 40%;
+
+    /* Green accent */
+    --accent: 145 30% 52%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 145 15% 88%;
+    --input: 25 40% 93%;
+    --ring: 145 25% 45%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 25 30% 94%;
+    --sidebar-foreground: 145 15% 20%;
+    --sidebar-primary: 145 25% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 145 30% 52%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 145 15% 88%;
+    --sidebar-ring: 145 25% 45%;
+
+    /* Green and neutral tones */
+    --rose-50: 145 30% 92%;
+    --rose-100: 145 28% 88%;
+    --rose-200: 145 26% 82%;
+    --rose-300: 145 24% 75%;
+    --rose-400: 145 25% 52%;
+    --rose-500: 145 25% 45%;
+
+    --amber-50: 25 50% 96%;
+    --amber-100: 25 50% 92%;
+
+    --slate-50: 145 15% 95%;
+    --slate-100: 145 15% 92%;
+    --slate-200: 145 15% 85%;
+    --slate-600: 145 15% 35%;
+    --slate-700: 145 15% 25%;
+    --slate-900: 145 15% 12%;
+  }
+
+  .dark {
+    --background: 145 20% 15%;
+    --foreground: 0 0% 95%;
+
+    --card: 145 20% 20%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 145 20% 20%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 145 30% 55%;
+    --primary-foreground: 145 20% 15%;
+
+    --secondary: 25 50% 85%;
+    --secondary-foreground: 145 20% 15%;
+
+    --muted: 145 20% 30%;
+    --muted-foreground: 145 10% 70%;
+
+    --accent: 145 35% 60%;
+    --accent-foreground: 145 20% 15%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 145 20% 25%;
+    --input: 145 20% 30%;
+    --ring: 145 30% 55%;
+
+    --sidebar-background: 145 15% 12%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 145 30% 55%;
+    --sidebar-primary-foreground: 145 15% 12%;
+    --sidebar-accent: 145 35% 60%;
+    --sidebar-accent-foreground: 145 15% 12%;
+    --sidebar-border: 145 20% 25%;
+    --sidebar-ring: 145 30% 55%;
+
+    --rose-50: 145 30% 85%;
+    --rose-100: 145 28% 80%;
+    --rose-200: 145 26% 75%;
+    --rose-300: 145 24% 70%;
+    --rose-400: 145 25% 60%;
+    --rose-500: 145 30% 55%;
+
+    --amber-50: 25 50% 85%;
+    --amber-100: 25 50% 80%;
+
+    --slate-50: 145 15% 85%;
+    --slate-100: 145 15% 80%;
+    --slate-200: 145 15% 70%;
+    --slate-600: 145 15% 55%;
+    --slate-700: 145 15% 65%;
+    --slate-900: 145 15% 80%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  pre,
+  code {
+    overflow-x: auto;
+    white-space: pre;
+  }
+}
