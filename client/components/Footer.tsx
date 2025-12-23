@@ -61,7 +61,7 @@ export function Footer() {
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2F8f78a356a05540998176ea24bafbe59e%2Fedda637fd5074fd989d83fed65a6afa5?format=webp&width=800"
                 alt="SkinWork"
-                className="h-12 w-auto filter brightness-75"
+                className="h-16 w-auto filter brightness-75"
               />
               <span className="font-bold text-slate-900">Skinwork</span>
             </Link>
@@ -121,7 +121,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-2 text-sm text-slate-600">
                 <Mail size={16} className="mt-1 flex-shrink-0 text-primary-500" />
-                <span>info@skinwork.in</span>
+                <span>info@skinworkclinic.com</span>
               </li>
               <li className="flex items-start gap-2 text-sm text-slate-600">
                 <MapPin size={16} className="mt-1 flex-shrink-0 text-primary-500" />

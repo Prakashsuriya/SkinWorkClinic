@@ -47,7 +47,7 @@ export default function Contact() {
                 <Mail className="text-rose-500" size={24} />
               </div>
               <h3 className="text-lg font-bold text-slate-900 mb-2">Email Us</h3>
-              <p className="text-slate-600">info@skinwork.in</p>
+              <p className="text-slate-600">info@skinworkclinic.com</p>
             </div>
           </motion.div>
 
