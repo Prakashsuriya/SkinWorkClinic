@@ -1,9 +1,20 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { X } from "lucide-react";
 
 export default function Services() {
-  const [expandedService, setExpandedService] = useState<string | null>(null);
+  const [selectedService, setSelectedService] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openServiceModal = (service: any) => {
+    setSelectedService(service);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedService(null);
+  };
 
   const serviceCategories = [
     {
@@ -87,7 +98,7 @@ export default function Services() {
       title: "Body Contouring",
       description:
         "Non-invasive fat loss programs using lipolytic injections and EM SLIM NEO machine for arms, tummy, bra fat, and double chin.",
-      image: "https://images.pexels.com/photos/6707559/pexels-photo-6707559.jpeg",
+      image: "https://i.pinimg.com/1200x/f4/8c/26/f48c26e6e16355c058f32a64311ea837.jpg",
     },
     {
       id: "iv-infusions",
@@ -117,7 +128,7 @@ export default function Services() {
       title: "Hair Growth & PRP Treatments",
       description:
         "Advanced hair restoration and growth treatments using cutting-edge technology and regenerative medicine.",
-      image: "https://images.pexels.com/photos/5793903/pexels-photo-5793903.jpeg",
+      image: "https://i.pinimg.com/1200x/96/44/7f/96447f397f68bcb7de434e1beb51f2b2.jpg",
       subcategories: [
         {
           name: "Hair Treatment Options",
@@ -141,7 +152,7 @@ export default function Services() {
     {
       icon: "👨‍⚕️",
       title: "Expert Team",
-      description: "Certified dermatologists and aestheticians with years of experience",
+      description: "Certified Dermatologist, aesthetic physicians and therapists",
       image: "https://images.pexels.com/photos/5659012/pexels-photo-5659012.jpeg",
     },
     {
@@ -223,46 +234,72 @@ export default function Services() {
               )}
 
               {/* Content */}
-              <button
-                onClick={() =>
-                  setExpandedService(
-                    expandedService === service.id ? null : service.id
-                  )
-                }
-                className="w-full px-6 py-5 flex flex-col items-start justify-between hover:bg-slate-50 transition-all"
-              >
+              <div className="px-6 py-5">
                 <div className="text-left mb-4">
                   <h3 className="text-xl font-bold text-slate-900 mb-2">
                     {service.title}
                   </h3>
-                  <p className="text-slate-600 text-sm">{service.description}</p>
+                  <p className="text-slate-600 text-sm mb-4">{service.description}</p>
                 </div>
-                <div className="flex items-center justify-between w-full">
-                  <span className="text-primary-500 font-semibold text-sm">
-                    Learn More
-                  </span>
-                  <ChevronDown
-                    size={20}
-                    className={`text-primary-500 transition-transform ${
-                      expandedService === service.id ? "rotate-180" : ""
-                    }`}
-                  />
-                </div>
-              </button>
-
-              {/* Expanded Content */}
-              {expandedService === service.id && service.subcategories && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="bg-slate-50 border-t border-primary-200 px-6 py-6"
+                <button
+                  onClick={() => openServiceModal(service)}
+                  className="w-full py-2 px-4 bg-rose-500 text-white rounded-lg transition-colors"
                 >
+                  View Details
+                </button>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Service Details Modal */}
+      <AnimatePresence>
+        {isModalOpen && selectedService && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
+          >
+            <motion.div
+              className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative">
+                {selectedService.image && (
+                  <div className="h-64 w-full overflow-hidden">
+                    <img
+                      src={selectedService.image}
+                      alt={selectedService.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
+                <button
+                  onClick={closeModal}
+                  className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+              
+              <div className="p-6">
+                <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                  {selectedService.title}
+                </h2>
+                <p className="text-slate-600 mb-6">{selectedService.description}</p>
+                
+                {selectedService.subcategories && (
                   <div className="space-y-6">
-                    {service.subcategories.map((subcategory, idx) => (
+                    {selectedService.subcategories.map((subcategory: any, idx: number) => (
                       <div key={idx}>
                         <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
-                          <span className="w-2 h-2 bg-primary-500 rounded-full" />
+                          <span className="w-2 h-2 bg-rose-500 rounded-full" />
                           {subcategory.name}
                         </h4>
                         {subcategory.description && (
@@ -272,12 +309,12 @@ export default function Services() {
                         )}
                         {subcategory.items && (
                           <div className="grid grid-cols-1 gap-1 ml-4">
-                            {subcategory.items.map((item, itemIdx) => (
+                            {subcategory.items.map((item: string, itemIdx: number) => (
                               <div
                                 key={itemIdx}
                                 className="flex items-center gap-2 text-slate-700 text-sm"
                               >
-                                <span className="text-primary-400">•</span>
+                                <span className="text-rose-400">•</span>
                                 <span>{item}</span>
                               </div>
                             ))}
@@ -286,12 +323,12 @@ export default function Services() {
                       </div>
                     ))}
                   </div>
-                </motion.div>
-              )}
+                )}
+              </div>
             </motion.div>
-          ))}
-        </div>
-      </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Why Choose Us - With Images */}
       <motion.div

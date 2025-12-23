@@ -1,8 +1,21 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { X } from "lucide-react";
 
 export default function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedImage, setSelectedImage] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openImageModal = (item: any) => {
+    setSelectedImage(item);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedImage(null);
+  };
 
   const galleryItems = [
     {
@@ -60,6 +73,41 @@ export default function Gallery() {
       description: "Professional lip hydration treatment for plump, healthy lips",
       image: "https://cdn.builder.io/o/assets%2F8f78a356a05540998176ea24bafbe59e%2F266edb8ab7f04812984e4809f4d94437?alt=media&token=0c2bd1c5-cc86-41a9-adfc-d625f4c077ce&apiKey=8f78a356a05540998176ea24bafbe59e",
       category: "cosmetic",
+    },
+    {
+      id: 9,
+      title: "Acne Treatment Progress",
+      description: "Complete acne treatment journey showing remarkable improvement",
+      image: "/images/Acne & pigmentation treatment.jpeg",
+      category: "facial",
+    },
+    {
+      id: 10,
+      title: "Hair Growth Sessions",
+      description: "Progressive hair regrowth over 4 treatment sessions",
+      image: "/images/WhatsApp Image 2025-12-22 at 4.20.20 PM (1).jpeg",
+      category: "hair",
+    },
+    {
+      id: 11,
+      title: "Jawline Contouring",
+      description: "Non-invasive jawline enhancement treatment results",
+      image: "/images/Chin filler.jpeg",
+      category: "cosmetic",
+    },
+    {
+      id: 12,
+      title: "Hair Growth Treatment",
+      description: "Advanced hair regrowth treatment with visible results",
+      image: "/images/WhatsApp Image 2025-12-22 at 4.20.21 PM.jpeg",
+      category: "hair",
+    },
+    {
+      id: 13,
+      title: "Acne Scar Treatment",
+      description: "Complete acne scar removal treatment progression",
+      image: "/images/Cosmelan peel treatment.jpeg",
+      category: "facial",
     },
   ];
 
@@ -154,7 +202,10 @@ export default function Gallery() {
               className="group overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all"
             >
               {/* Image Container */}
-              <div className="relative h-80 overflow-hidden bg-slate-100">
+              <div 
+                className="relative h-80 overflow-hidden bg-slate-100 cursor-pointer"
+                onClick={() => openImageModal(item)}
+              >
                 <img
                   src={item.image}
                   alt={item.title}
@@ -190,6 +241,47 @@ export default function Gallery() {
           ))}
         </div>
       </motion.div>
+
+      {/* Image Popup Modal */}
+      <AnimatePresence>
+        {isModalOpen && selectedImage && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center p-4 z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
+          >
+            <motion.div
+              className="relative max-w-3xl max-h-[80vh] w-full bg-white rounded-lg shadow-2xl"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative h-[60vh] overflow-hidden rounded-t-lg">
+                <img
+                  src={selectedImage.image}
+                  alt={selectedImage.title}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors z-10"
+              >
+                <X size={24} />
+              </button>
+              <div className="bg-white p-6 rounded-b-lg">
+                <h3 className="text-slate-900 text-xl font-bold mb-2">
+                  {selectedImage.title}
+                </h3>
+                <p className="text-slate-600">{selectedImage.description}</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   );
