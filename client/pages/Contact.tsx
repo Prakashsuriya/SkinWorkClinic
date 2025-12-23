@@ -27,8 +27,8 @@ export default function Contact() {
             className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow border border-rose-100"
           >
             <div className="flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center mb-4">
-                <Phone className="text-white" size={24} />
+              <div className="w-16 h-16 rounded-full bg-rose-100 flex items-center justify-center mb-4">
+                <Phone className="text-rose-500" size={24} />
               </div>
               <h3 className="text-lg font-bold text-slate-900 mb-2">Call Us</h3>
               <p className="text-slate-600 mb-2">+91 8088385292</p>
@@ -43,8 +43,8 @@ export default function Contact() {
             className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow border border-rose-100"
           >
             <div className="flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center mb-4">
-                <Mail className="text-white" size={24} />
+              <div className="w-16 h-16 rounded-full bg-rose-100 flex items-center justify-center mb-4">
+                <Mail className="text-rose-500" size={24} />
               </div>
               <h3 className="text-lg font-bold text-slate-900 mb-2">Email Us</h3>
               <p className="text-slate-600">info@skinwork.in</p>
@@ -58,8 +58,8 @@ export default function Contact() {
             className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow border border-rose-100"
           >
             <div className="flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center mb-4">
-                <Clock className="text-white" size={24} />
+              <div className="w-16 h-16 rounded-full bg-rose-100 flex items-center justify-center mb-4">
+                <Clock className="text-rose-500" size={24} />
               </div>
               <h3 className="text-lg font-bold text-slate-900 mb-2">Business Hours</h3>
               <p className="text-slate-600 text-sm">Mon-Fri: 10AM-8PM</p>
@@ -107,7 +107,7 @@ export default function Contact() {
               width="100%"
               height="100%"
               style={{ border: 0 }}
-              allowFullScreen=""
+              allowFullScreen={true}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
